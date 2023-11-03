@@ -1,0 +1,20 @@
+{{#each carts}}
+<div class="div-cart" id="{{_id}}">
+    <p>Cart Id: {{_id}}</p>
+    {{#each items}}
+    <p>Producto: {{title}}</p>
+    <p>Id del Producto: {{productId}}</p>
+    <p>quantity: {{quantity}}</p>
+    {{/each}}
+</div>
+{{/each}}
+{{#if hasNextPage}}
+<a href="/carts?page={{nextPage}}">Siguiente</a>
+{{/if}}
+{{#if hasPrevPage}}
+<a href="/carts?page={{prevPage}}">Anterior</a>
+{{/if}}
+
+<br>
+<a href="/"> ir a la base</a>
+<a href="/products"> ir a productos</a>

@@ -1,0 +1,70 @@
+paths:
+  /api/products/:
+    get:
+      summary: Show all products
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Show all products.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    post:
+      summary: Create new product
+      tags:
+        - Products
+      responses:
+        '200':
+          description: New product created.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+  /api/products/:pid:
+    get:
+      summary: Show product by ID
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Show product by ID.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    put:
+      summary: Update product
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Product updated.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    delete:
+      summary: Delete product
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Product deleted.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+  /api/products/mockingproducts:
+    post:
+      summary: Mock 100 random products
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Products created.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.

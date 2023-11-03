@@ -1,0 +1,99 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Show all carts
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Show all carts.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    post:
+      summary: Create new cart
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: New cart created.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+  /api/carts/{id}:
+    get:
+      summary: Show cart by ID
+      tags:
+        - Carts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id del cart que buscas
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Show cart by ID.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    put:
+      summary: Update cart
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Cart updated.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    delete:
+      summary: Delete cart
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Cart deleted.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+  /api/carts/:id/product/:productId:
+    post:
+      summary: Add product to cart by IDs
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Product added to cart.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    put:
+      summary: Update product in cart by IDs
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Product updated in cart.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.
+    delete:
+      summary: Delete product in cart by IDs
+      tags:
+        - Carts
+      responses:
+        '200':
+          description: Product deleted.
+        '404':
+          description: Show error message.
+        '500':
+          description: Server error.

@@ -1,0 +1,46 @@
+{
+  "name": "desafio__11_loggers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "cartTest": "mocha test/carts.test.js",
+    "sessionTest": "mocha test/session.test.js",
+    "productsTest": "mocha test/products.test.js",
+    "start:dev": "NODE_ENV=dev nodemon src/Server/server.js",
+    "start:local": "NODE_ENV=local nodemon src/Server/server.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "bcrypt": "^5.1.1",
+    "chai-http": "^4.4.0",
+    "connect-mongo": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^7.0.7",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.3.1",
+    "mongoose-paginate-v2": "^1.7.1",
+    "multer": "1.4.5-lts.1",
+    "node": "^18.7.0",
+    "nodemon": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-github2": "^0.1.12",
+    "routes": "^2.1.0",
+    "socket.io": "^4.5.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.10.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
+  }
+}
