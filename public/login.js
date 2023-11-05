@@ -1,5 +1,6 @@
 const loginForm = document.getElementById('loginForm');
 
+
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(loginForm);
@@ -23,8 +24,17 @@ loginForm.addEventListener('submit', async (e) => {
         }
 
         const responseData = await response.json();
-        if (responseData.status === 'success') {
-            window.location.replace('/login');
+        if (responseData.status === 'error') {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Credenciales inválidas',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        } else {
+            if (responseData.status === 'success') {
+                window.location.replace('/profile');
+            }
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error.message);

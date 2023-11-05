@@ -25,7 +25,7 @@ registerForm.addEventListener('submit', async (e) => {
         const responseData = await response.json();
         console.log(responseData);
         if (responseData.status === 'success') {
-            window.location.replace('/profile');
+            window.location.replace('/login');
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error.message);

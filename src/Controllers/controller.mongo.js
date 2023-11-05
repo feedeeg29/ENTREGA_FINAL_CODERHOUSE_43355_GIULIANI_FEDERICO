@@ -4,6 +4,8 @@ import ProductManager from '../DAOs/mongo/manager/products/manager.products.mong
 import UserManager from '../DAOs/mongo/manager/users/manager.user.mongo.js';
 import { developmentLogger } from '../utils/Logger/logger.js';
 import { storage, upload } from '../utils/multerStorage/multer.document.js'
+import { createHash } from "../utils/utils.js";
+
 class ActionsMongo {
     // Métodos de productos
     static async renderAllProducts(req, res) {
@@ -105,8 +107,15 @@ class ActionsMongo {
     }
     static async registerUser(req, res) {
         try {
-            const { email, password } = req.body;
-            const user = await UserManager.createUser({ email, password });
+            const userData = req.body;
+            const newUser = {
+                first_name: userData.first_name,
+                last_name: userData.last_name,
+                email: userData.email,
+                password: createHash(userData.password)
+            }
+            const user = await UserManager.createUser(newUser);
+            console.log(user)
             res.json({ status: 'success', payload: user });
         } catch (err) {
             developmentLogger.fatal(err)
@@ -128,7 +137,9 @@ class ActionsMongo {
 
             if (req.session) {
                 req.session.user = {
-                    name: `${user.first_name} ${user.last_name}`,
+                    //name: `${user.first_name} ${user.last_name}`,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
                     email: user.email,
                     role: user.role,
                 };

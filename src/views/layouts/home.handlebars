@@ -9,13 +9,32 @@
         }
     </style>
     <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
-    <a href="/" style="text-decoration: none; color:cadetblue">
-        <h1>Home</h1>
-    </a>
-    {{{body}}}
+    <div style="display: flex;justify-content: space-between;">
+        <a href="/" style="text-decoration: none; justify-self:flex-end color:cadetblue">
+            <h1 style="align-self:flex-start;">Home</h1>
+        </a>
+        {{#if user}}
+        <a href="/profile" style="text-decoration: none"><button
+                style="background-color: black; border: radius 5px; color:aliceblue">
+                Perfil</button></a>
+        {{else}}
+        <div style="display: flex; justify-content: flex-end;">
+            <a href="/login" style="text-decoration: none"><button
+                    style="background-color: black; border: radius 5px ; color:aliceblue">
+                    Log In</button></a>
+            <a href="/register" style="text-decoration: none"><button
+                    style="background-color: black; border: radius 5px; color:aliceblue">
+                    Register</button></a>
+        </div>
+        {{/if}}
+    </div>
+    <div>
+        {{{body}}}
+    </div>
 </body>
 
 </html>

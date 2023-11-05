@@ -7,7 +7,7 @@ const viewsRoutes = Router();
 
 // Ruta base
 viewsRoutes.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { user: req.session.user });
 });
 
 // Rutas de productos
@@ -18,7 +18,7 @@ viewsRoutes.get('/addproducts', (req, res) => {
 });
 
 // Rutas de carritos
-viewsRoutes.get('/carts', authRole(["admin", "superadmin", "premiumUser"]), ActionsMongo.renderAllCarts);
+viewsRoutes.get('/carts', authRole(["admin", "superadmin", "premiumUser", "freeUser"]), ActionsMongo.renderAllCarts);
 viewsRoutes.get('/cart/:id', ActionsMongo.getOneCart);
 
 // Rutas de autenticación
