@@ -1,9 +1,10 @@
 import path from 'path';
 import multer from 'multer'
+import __dirname from '../utils.js'
 export const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        if (file.fieldname === 'document') {
-            cb(null, path.join(__dirname, '../uploads/documents'));
+        if (file.fieldname) {
+            cb(null, 'src/uploads/documents');
         } else {
             cb(new Error('Tipo de archivo no admitido'));
         }

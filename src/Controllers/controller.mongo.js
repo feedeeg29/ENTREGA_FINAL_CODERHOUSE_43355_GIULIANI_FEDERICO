@@ -298,8 +298,11 @@ class ActionsMongo {
                     } else {
                         user.documents = req.files.map((file) => ({
                             name: file.originalname,
-                            reference: `/uploads/documents/${file.filename}`,
+                            reference: `../uploads/documents/${file.filename}`,
                         }));
+                        if (user.role === 'freeUser') {
+                            user.role = 'premiumUser';
+                        }
                         await user.save();
                         res.status(200).json({ message: 'Documentos cargados con éxito.' });
                     }

@@ -1,14 +1,15 @@
 <div>
-    <h1>Bienvenido, {{ user.first_name }}</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>Rol: {{ user.role }}</p>
-    {{#if isFreeUser}}
-    <a href='/premium/{{user.email}}'><button
-            style="background-color:black;border: none; border-radius:5px; color:aliceblue" id="premiumButton"> Volvete
-            Premium!!</button></a>
-    {{/if}}
-    <button style="background-color:black;border: none; border-radius:5px; color:aliceblue"
-        id="logoutButton">Logout</button>
+        <h1>Bienvenido, {{ user.first_name }}</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>Rol: {{ user.role }}</p>
+        {{#if isFreeUser}}
+        <a href='/premium/{{user.email}}'><button
+                        style="background-color:black;border: none; border-radius:5px; color:aliceblue"
+                        id="premiumButton"> Volvete
+                        Premium!!</button></a>
+        {{/if}}
+        <button style="background-color:black;border: none; border-radius:5px; color:aliceblue"
+                id="logoutButton">Logout</button>
 </div>
 
 
