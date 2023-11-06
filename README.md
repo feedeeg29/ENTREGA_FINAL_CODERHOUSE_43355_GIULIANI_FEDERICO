@@ -11,38 +11,40 @@ Se requiere tener una base de datos MongoDB disponible. Si no la tienes, puedes 
 
 <h1>Instalación</h1>
 <h2>1_Clona el repositorio desde GitHub:</h2>
-
+    git clone https://github.com/feedeeg29/ENTREGA_FINAL_CODERHOUSE_43355_GIULIANI_FEDERICO.git
 <h2>2_Instala las dependencias utilizando npm:</h2>
-    npm install
+    npm install 
 <h2>3_Crea un archivo .env en la raíz del proyecto y configura las variables de entorno necesarias. Ejemplo:</h2>
-    
-    <p>PORT=8080</p>
-    
-    <p>PERSISTENCE=mongo</p>
 
+##serverConfig
+    PORT=8080
     
-    <p>MONGO_CONFIG='TuConfigMongo'</p>
+    PERSISTENCE=mongo
+
+##Mongoconfig
+    MONGO_CONFIG='TuConfigMongo'
     
-    <p>DB_USER=TuUser</p>
+    DB_USER=TuUser
     
-    <p>DB_PASSWORD=TuPassword</p>
+    DB_PASSWORD=TuPassword
     
-    <p>HOST=TuHost</p>
+    HOST=TuHost
     
-    <p>DB_NAME=</p>
+    DB_NAME=
     
-    <p>SECRET='Tu_Secreto'</p>
+    SECRET='Tu_Secreto'
 
 ##github 
     
-    <p>CLIENT_ID="Tu_ID"</p>
+    CLIENT_ID="Tu_ID"
     
-    <p>CLIENT_SECRET="TuSecreto"</p>
+    CLIENT_SECRET="TuSecreto"
     
-    <p>GIT_CALLBACK_URL="Tu_CALLBACK"</p>
+    GIT_CALLBACK_URL="Tu_CALLBACK"
     
 <h1>Uso</h1>
 <h2>1_Inicia la aplicación en el entorno de desarrollo con:</h2>
+    npm run start:dev
 <h2>2_Abre tu navegador y visita http://localhost:"tupuerto" para acceder a la aplicación.</h2>
 
 <h1>Test</h1>
