@@ -45,6 +45,6 @@ userMongoRoutes.get('/ver-sesion', (req, res) => {
     }
 });
 
-userMongoRoutes.post('/:uid/documents', ActionsMongo.uploadDocuments);
+userMongoRoutes.post('/:email/documents', ActionsMongo.uploadDocuments);
 
 export default userMongoRoutes;

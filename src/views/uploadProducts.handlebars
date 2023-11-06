@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cargar Producto - Solo para Premium Users</title>
+</head>
+
+<body>
+    <h1>Cargar Producto</h1>
+    {{#if user}}
+    {{#if user.role '===' 'premiumUser'}}
+    <form action="/api/products" method="POST">
+        <label for="name">Nombre del Producto:</label>
+        <input type="text" name="name" id="name" required>
+        <br>
+        <label for="description">Descripción del Producto:</label>
+        <textarea name="description" id="description" rows="4" cols="50" required></textarea>
+        <br>
+        <label for="price">Precio:</label>
+        <input type="number" name="price" id="price" step="0.01" required>
+        <br>
+        <label for="thumbnail">URL del Thumbnail:</label>
+        <input type="text" name="thumbnail" id="thumbnail" required>
+        <br>
+        <label for="stock">Cantidad en Stock:</label>
+        <input type="number" name="stock" id="stock" required>
+        <br>
+        <button type="submit">Cargar Producto</button>
+    </form>
+    {{else}}
+    <p>No tienes permiso para cargar productos.</p>
+    {{/if}}
+    {{else}}
+    <p>Debes iniciar sesión para cargar productos.</p>
+    {{/if}}
+</body>
+
+</html>

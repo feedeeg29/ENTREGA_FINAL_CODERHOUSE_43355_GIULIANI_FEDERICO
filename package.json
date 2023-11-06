@@ -9,7 +9,8 @@
     "sessionTest": "mocha test/session.test.js",
     "productsTest": "mocha test/products.test.js",
     "start:dev": "NODE_ENV=dev nodemon src/Server/server.js",
-    "start:local": "NODE_ENV=local nodemon src/Server/server.js"
+    "start:local": "NODE_ENV=local nodemon src/Server/server.js",
+    "start:devw": "SET NODE_ENV=dev & nodemon src/Server/server.js"
   },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",

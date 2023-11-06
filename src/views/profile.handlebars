@@ -2,12 +2,15 @@
     <h1>Bienvenido, {{ user.first_name }}</h1>
     <p>Email: {{ user.email }}</p>
     <p>Rol: {{ user.role }}</p>
-    <button style="background-color:black;border: none; border-radius:5px; color:aliceblue" id="premiumButton"> Volvete
-        Premium!!</button>
+    {{#if isFreeUser}}
+    <a href='/premium/{{user.email}}'><button
+            style="background-color:black;border: none; border-radius:5px; color:aliceblue" id="premiumButton"> Volvete
+            Premium!!</button></a>
+    {{/if}}
     <button style="background-color:black;border: none; border-radius:5px; color:aliceblue"
         id="logoutButton">Logout</button>
 </div>
 
 
 <script src="/logout.js"></script>
-<script src="/premium.js"></script>
+<!--<script src="/premium.js"></script>-->

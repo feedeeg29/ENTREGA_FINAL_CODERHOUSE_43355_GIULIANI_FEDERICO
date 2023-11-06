@@ -12,13 +12,13 @@ viewsRoutes.get('/', (req, res) => {
 
 // Rutas de productos
 viewsRoutes.get('/products', ActionsMongo.renderAllProducts);
-viewsRoutes.get('/product/:id', ActionsMongo.getOne);
+viewsRoutes.get('/product/:id', ActionsMongo.renderOne);
 viewsRoutes.get('/addproducts', (req, res) => {
     res.render('addProduct');
 });
 
 // Rutas de carritos
-viewsRoutes.get('/carts', authRole(["admin", "superadmin", "premiumUser", "freeUser"]), ActionsMongo.renderAllCarts);
+viewsRoutes.get('/carts', ActionsMongo.renderAllCarts);
 viewsRoutes.get('/cart/:id', ActionsMongo.getOneCart);
 
 // Rutas de autenticación
@@ -29,13 +29,22 @@ viewsRoutes.get('/register', (req, res) => {
     res.render('register');
 });
 viewsRoutes.get('/profile', (req, res) => {
+    let user = req.session.user
+    let isFreeUser = user && user.role === 'freeUser';
+
     res.render('profile', {
-        user: req.session.user
+        user, isFreeUser
+
     });
+
 });
 
 viewsRoutes.get('/superuser', authRole("superadmin"), (req, res) => {
     res.render('superuser')
+})
+viewsRoutes.get('/premium/:email', (req, res) => {
+    let user = req.session.user
+    res.render('uploadDocuments', { user })
 })
 //Ruta Unicamente para el desaf[io de Loggers// Eliminar despu[es]
 viewsRoutes.get('/loggerTest', authRole(["admin", "superadmin"]), (req, res) => {

@@ -8,7 +8,7 @@ const mnrouter = Router();
 
 
 //Endpoint para traer todos los productos 
-mnrouter.get('/', authRole(["admin", "superadmin", "premiumUser", "freeUser"]), async (req, res) => {
+mnrouter.get('/', async (req, res) => {
     try {
         const products = await ActionsMongo.getAll(req, req.query)
         res.status(200).json({ status: 200, data: products })
@@ -20,16 +20,8 @@ mnrouter.get('/', authRole(["admin", "superadmin", "premiumUser", "freeUser"]), 
 
 
 //Endpoint para traer un producto -- ID requerido
-mnrouter.get("/:id", authRole(["admin", "superadmin", "premiumUser", "freeUser"]), async (req, res) => {
-    const { id } = req.params;
-    try {
-        const product = await ActionsMongo.getOne(id)
-        res.json({ status: 200, data: product })
-    }
-    catch (err) {
-        res.json({ status: 500, err: err.message })
-    }
-})
+mnrouter.get("/:id", ActionsMongo.getOne)
+
 
 
 //Endpoint para crear un producto
@@ -37,12 +29,8 @@ mnrouter.post("/", ActionsMongo.createProduct)
 
 
 //Endpoint para actualizar un producto -- ID requerido
-mnrouter.put("/:id", authRole(["admin", "superadmin"]), async (req, res) => {
-    const { id } = req.params;
-    const { name, description, code, thumbnail, price, stock } = req.body;
-    const product = req.body;
-    await ActionsMongo.updateProduct(id, product)
-})
+mnrouter.put("/:id", ActionsMongo.updateProduct)
+
 
 
 //Endpoint para eliminar un producto -- ID requerido

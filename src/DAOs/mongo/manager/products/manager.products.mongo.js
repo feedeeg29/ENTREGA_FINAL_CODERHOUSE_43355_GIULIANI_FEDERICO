@@ -38,7 +38,7 @@ class productManager {
     }
     static updateProduct = async (id, newContent) => {
         try {
-            return await productModel.findByIdAndUpdate(id, newContent, { new: true });
+            return await productModel.findByIdAndUpdate(id, newContent);
         }
         catch (err) {
             throw new Error(err);

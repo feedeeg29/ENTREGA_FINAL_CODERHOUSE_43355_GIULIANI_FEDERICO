@@ -25,25 +25,42 @@ class Contenedor {
             throw new Error(err);
         }
     }
+    /*     async update(product) {
+            try {
+                if (fs.access(this.file)) {
+                    const data = await fs.promises.readFile(this.file);
+                    const array = JSON.parse(data);
+                    const index = product.id - 1;
+                    array[index] = product;
+                    await fs.promises.writeFile(this.file, JSON.stringify(array, null, 2));
+                    developmentLogger.info('Se ha actualizado el objeto con el id: ' + product.id);
+                } else {
+                    throw new Error('No existe el archivo');
+                }
+            } catch (err) {
+                throw new Error(err);
+            }
+        } */
     async update(product) {
         try {
-            if (fs.existsSync(this.file)) {
-                const data = await fs.promises.readFile(this.file);
-                const array = JSON.parse(data);
-                const index = product.id - 1;
+            const data = await fs.readFile(this.file);
+            const array = JSON.parse(data);
+            const index = array.findIndex(item => item.id === product.id);
+            if (index !== -1) {
                 array[index] = product;
-                await fs.promises.writeFile(this.file, JSON.stringify(array, null, 2));
+                await fs.writeFile(this.file, JSON.stringify(array, null, 2));
                 developmentLogger.info('Se ha actualizado el objeto con el id: ' + product.id);
             } else {
-                throw new Error('No existe el archivo');
+                throw new Error('Producto no encontrado en el archivo');
             }
         } catch (err) {
             throw new Error(err);
         }
     }
+
     async delete(id) {
         try {
-            if (fs.existsSync(this.file)) {
+            if (fs.access(this.file)) {
                 const data = await fs.promises.readFile(this.file);
                 const array = JSON.parse(data);
                 const deleteishion = array.filter(product => product.id != id);

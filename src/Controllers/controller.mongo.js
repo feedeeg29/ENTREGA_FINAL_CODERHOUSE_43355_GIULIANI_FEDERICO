@@ -4,7 +4,7 @@ import ProductManager from '../DAOs/mongo/manager/products/manager.products.mong
 import UserManager from '../DAOs/mongo/manager/users/manager.user.mongo.js';
 import { developmentLogger } from '../utils/Logger/logger.js';
 import { storage, upload } from '../utils/multerStorage/multer.document.js'
-import { createHash } from "../utils/utils.js";
+import { isValidPassword, createHash } from "../utils/utils.js";
 
 class ActionsMongo {
     // Métodos de productos
@@ -30,7 +30,7 @@ class ActionsMongo {
         }
     }
 
-    static async getOne(req, res) {
+    static async renderOne(req, res) {
         try {
             const product = await ProductManager.getOne(req.params.id);
             res.render('product', { product });
@@ -40,9 +40,20 @@ class ActionsMongo {
         }
     }
 
+    static async getOne(req, res) {
+        try {
+            let { id } = req.params; // Aquí se corrige la obtención del parámetro
+            const product = await ProductManager.getOne(id);
+            res.json({ status: 200, data: product })
+        } catch (err) {
+            developmentLogger.fatal(err);
+            res.status(500).json({ status: 500, message: "Error al actualizar el producto", err: err.message });
+        }
+    }
+
     static async createProduct(req, res) {
         try {
-            const { name, description, code, thumbnail, price, stock } = req.body;
+            const { name, description, code, thumbnail, price, stock, seller } = req.body;
             if (!name || !description || !code || !thumbnail || !price || !stock) {
                 return res.json({ status: 400, err: "Faltan datos" })
             }
@@ -55,7 +66,21 @@ class ActionsMongo {
         }
     }
 
+    static async updateProduct(req, res) {
+        try {
+            const { id } = req.params;
+            const newProduct = req.body;
+            const payload = await ProductManager.updateProduct(id, newProduct);
+            console.log(id)
+            console.log(payload)
+            if (typeof payload == 'string')
+                return res.status(404).json({ status: 'error', message: payload });
+            return res.status(200).json({ status: 'success', product: payload });
 
+        } catch (err) {
+            return res.status(500).json({ status: 'error', error: err.message });
+        }
+    }
 
 
     // Métodos de carritos
@@ -73,7 +98,7 @@ class ActionsMongo {
         try {
             const { carts, hasNextPage, hasPrevPage, nextPage, prevPage } = await CartManager.getAllCarts(req, res, req.query);
             //console.log(carts)
-            res.render('carts', { status: 200, data: carts, hasNextPage, hasPrevPage, nextPage, prevPage });
+            res.render('carts', { status: 200, carts, hasNextPage, hasPrevPage, nextPage, prevPage });
         } catch (err) {
             developmentLogger.fatal(err)
             res.json({ status: 500, err: err.message });
@@ -125,19 +150,19 @@ class ActionsMongo {
     static async getUserByEmail(email) {
         return UserManager.getUserByEmail(email)
     }
-
     static async loginUser(req, res) {
         const { email, password } = req.body;
-        try {
-            const user = await UserManager.getUserByEmailAndPassword(email, password);
 
-            if (!user) {
-                return res.status(400).send({ status: "error", error: "Credenciales inválidas" });
-            }
+        const user = await UserManager.getUserByEmail(email);
 
+        if (!user) {
+            return res.status(400).send({ status: "error", error: "Credenciales inválidas" });
+        }
+        const passwordMatch = isValidPassword(password, user.password);
+
+        if (passwordMatch) {
             if (req.session) {
                 req.session.user = {
-                    //name: `${user.first_name} ${user.last_name}`,
                     first_name: user.first_name,
                     last_name: user.last_name,
                     email: user.email,
@@ -148,10 +173,11 @@ class ActionsMongo {
             }
 
             res.status(200).send({ status: "success", message: "Inicio de sesión exitoso" });
-        } catch (err) {
-            res.status(500).send({ status: "error", error: err.message });
+        } else {
+            return res.status(400).send({ status: "error", error: "Credenciales inválidas" });
         }
     }
+
 
     static async logoutUser(req, res) {
         try {
@@ -248,16 +274,28 @@ class ActionsMongo {
             res.status(500).json({ status: 'error', message: err.message });
         }
     };
+    /*     static async renderDocuments(req, res) {
+            try {
+                const userEmail = req.params.email;
+                const user = await UserManager.getUserByEmail(userEmail);
+                res.render('documents', user)
+            } catch (error) {
+    
+            }
+    
+        } */
     static async uploadDocuments(req, res) {
         try {
-            const userId = req.params.uid;
-            const user = await UserManager.getUserById(userId);
+            const userEmail = req.params.email;
+            console.log(userEmail)
+            const user = await UserManager.getUserByEmail(userEmail);
+            console.log(userEmail)
+            console.log(user)
             if (user) {
                 upload.array('documents', 5)(req, res, async (err) => {
                     if (err) {
-                        res.status(400).json({ error: 'Error al cargar los documentos.' });
+                        res.status(400).json({ error: 'Error al cargar los documentos idiota' });
                     } else {
-                        // Guarda los documentos en la base de datos
                         user.documents = req.files.map((file) => ({
                             name: file.originalname,
                             reference: `/uploads/documents/${file.filename}`,

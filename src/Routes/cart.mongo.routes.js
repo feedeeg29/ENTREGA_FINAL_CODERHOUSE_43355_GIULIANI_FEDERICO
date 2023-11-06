@@ -8,11 +8,11 @@ const cartMongoRoutes = Router();
 //Rutas Cart
 
 //Traer todos los Cart
-cartMongoRoutes.get('/', authRole(["admin", "superadmin", "premiumUser"]), async (req, res) => {
+cartMongoRoutes.get('/', async (req, res) => {
     try {
         const carts = await ActionsMongo.getAllCarts(req, res, req.query)
         console.log(carts)
-        res.status(200).json({ status: 200, data: carts })
+        res.status(200).json({ data: carts })
     }
     catch (err) {
         res.json({ status: 500, err: err.message })
@@ -20,7 +20,7 @@ cartMongoRoutes.get('/', authRole(["admin", "superadmin", "premiumUser"]), async
     }
 })
 //Traer un Cart por ID
-cartMongoRoutes.get('/:id', authRole(["admin", "superadmin", "premiumUser"]), async (req, res) => {
+cartMongoRoutes.get('/:id', async (req, res) => {
     try {
         const cart = await ActionsMongo.getOneCart(req.params.id)
         //developmentLogger.debug(cart)

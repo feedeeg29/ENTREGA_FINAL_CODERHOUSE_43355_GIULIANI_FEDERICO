@@ -8,12 +8,14 @@
 
 <body>
     <h1>Subir Documentos</h1>
-    <form action="/api/users/{{uid}}/documents" method="POST" enctype="multipart/form-data">
+    {{#if user}}
+    <form action="/api/users/{{user.email}}/documents" method="POST" enctype="multipart/form-data">
         <label for="documents">Documentos:</label>
         <input type="file" name="documents" id="documents" multiple required>
         <br>
         <button type="submit">Subir Documentos</button>
     </form>
+    {{/if}}
 </body>
 
 </html>

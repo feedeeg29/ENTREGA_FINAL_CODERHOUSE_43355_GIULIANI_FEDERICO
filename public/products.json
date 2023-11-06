@@ -1,0 +1,13 @@
+[
+  {
+    "name": "producto1",
+    "timestamp": 1699248107118,
+    "description": "prueba",
+    "code": 1,
+    "photo": "",
+    "price": 123,
+    "stock": 1,
+    "seller": "coder",
+    "id": 1
+  }
+]

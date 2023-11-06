@@ -1,8 +1,9 @@
 import dotenv from 'dotenv';
 
 dotenv.config({
-    path: `./.env.${process.env.NODE_ENV}`,
-});
+    path: `./.env.dev` || `./.env.dev`,
+})
+
 
 export const PORT = process.env.PORT || 8080
 
