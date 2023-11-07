@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import cartModel from '../carts/model.carts.mongo.js'
 const userCollection = "users";
 
 const UserSchema = new mongoose.Schema({
@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     email: String,
     age: Number,
     password: String,
-    cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' },
+    cart: { type: mongoose.Schema.Types.ObjectId, ref: cartModel },
     role: { type: String, enum: ["freeUser", "premiumUser", "admin", "superAdmin"], default: 'freeUser' },
     documents: [
         {

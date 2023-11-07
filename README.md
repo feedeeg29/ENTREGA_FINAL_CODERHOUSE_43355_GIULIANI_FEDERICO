@@ -17,11 +17,13 @@ Se requiere tener una base de datos MongoDB disponible. Si no la tienes, puedes 
 <h2>3_Crea un archivo .env en la raíz del proyecto y configura las variables de entorno necesarias. Ejemplo:</h2>
 
 ##serverConfig
+
     PORT=8080
     
     PERSISTENCE=mongo
 
 ##Mongoconfig
+
     MONGO_CONFIG='TuConfigMongo'
     
     DB_USER=TuUser
@@ -30,7 +32,7 @@ Se requiere tener una base de datos MongoDB disponible. Si no la tienes, puedes 
     
     HOST=TuHost
     
-    DB_NAME=
+    DB_NAME=TuDBName
     
     SECRET='Tu_Secreto'
 

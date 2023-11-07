@@ -116,6 +116,34 @@ class ActionsMongo {
         }
     }
 
+    static async addCartToUser(req, res) {
+        try {
+            const activeUser = await UserManager.getUserById(req.session.user._id);
+
+            if (!activeUser.cart || activeUser.cart.length === 0) {
+                const newCart = await CartManager.createCart({ items: [] });
+                activeUser.cart.push(newCart._id);
+                await activeUser.save();
+
+                // Añadir el producto al carrito recién creado
+                await CartManager.addToCart(newCart._id, req.params.productId);
+
+                res.status(201).json({ status: 'success', message: 'Carrito creado y asociado al usuario', cart: newCart });
+            } else {
+                // Obtener el carrito activo
+                const userCart = await CartManager.findLatestActiveCart(activeUser._id);
+
+                if (userCart) {
+                    await CartManager.addToCart(userCart._id, req.params.productId);
+                    res.status(200).json({ status: 'success', message: 'Producto agregado al carrito existente' });
+                } else {
+                    res.status(404).json({ status: 'error', message: 'No se encontró un carrito activo para el usuario' });
+                }
+            }
+        } catch (error) {
+            res.status(500).json({ status: 'error', message: error.message });
+        }
+    }
 
 
     // Métodos de autenticación (manejo de usuarios)
@@ -163,6 +191,7 @@ class ActionsMongo {
         if (passwordMatch) {
             if (req.session) {
                 req.session.user = {
+                    id: user._id,
                     first_name: user.first_name,
                     last_name: user.last_name,
                     email: user.email,
@@ -243,6 +272,7 @@ class ActionsMongo {
     static async getCurrentUser(req, res) {
         if (req.session.user) {
             const currentUser = req.session.user;
+            console.log(currentUser)
             res.status(200).json({ status: "success", user: currentUser });
             developmentLogger.info("usuario conectado", currentUser)
         } else {
@@ -274,16 +304,7 @@ class ActionsMongo {
             res.status(500).json({ status: 'error', message: err.message });
         }
     };
-    /*     static async renderDocuments(req, res) {
-            try {
-                const userEmail = req.params.email;
-                const user = await UserManager.getUserByEmail(userEmail);
-                res.render('documents', user)
-            } catch (error) {
-    
-            }
-    
-        } */
+
     static async uploadDocuments(req, res) {
         try {
             const userEmail = req.params.email;

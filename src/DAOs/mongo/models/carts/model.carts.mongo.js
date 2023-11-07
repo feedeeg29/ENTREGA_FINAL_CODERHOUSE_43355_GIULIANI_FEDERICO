@@ -16,7 +16,9 @@ const cartSchema = new mongoose.Schema({
                 default: 1
             }
         }
-    ]
+    ],
+    owner: { type: String },
+    condicion: { type: String, enum: ["activo", "finalizado"], default: "activo" }
 });
 cartSchema.plugin(mongoosePaginate)
 
