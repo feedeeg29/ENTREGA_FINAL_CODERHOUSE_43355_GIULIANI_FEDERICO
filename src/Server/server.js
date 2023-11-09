@@ -56,12 +56,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.engine("handlebars", handlebars.engine({ defaultLayout: 'home', extname: '.handlebars' }))
 app.use(express.static(`${__dirname}/public`))
-app.use(express.static(`${__dirname}/public`))
+app.use(express.static(`${__dirname}/public/css`))
 app.use(express.static(`public/errors`))
 app.set("view engine", "handlebars")
 app.set('views', path.join(__dirname, '..', 'views'));
 
-
+console.log(`${__dirname}/public/css`)
 //rutas para el front
 app.use('/', viewsRoutes)
 app.use('/products', viewsRoutes)

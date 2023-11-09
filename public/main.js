@@ -32,7 +32,8 @@ addProductButton.addEventListener('click', async () => {
 
         const userId = userData.user.id;
 
-        const addToCartResponse = await fetch(`api/carts/${userId}/cart/product/${productId}`, {
+
+        const addToCartResponse = await fetch(`/api/carts/${userId}/product/${productId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,4 +49,4 @@ addProductButton.addEventListener('click', async () => {
     } catch (error) {
         console.error('Error al agregar el producto al carrito:', error);
     }
-})
+});

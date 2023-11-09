@@ -2,7 +2,6 @@ const premiumButton = document.getElementById('premiumButton')
 
 premiumButton.addEventListener('click', async () => {
     try {
-        console.log("no funciona")
         const userPremium = {
             "role": "premiumUser"
         }

@@ -108,7 +108,8 @@ class ActionsMongo {
         try {
             const cart = await CartManager.getOneCart(req.params.id);
             //console.log(cart)
-            return cart
+            //return cart
+            res.json({ status: 200, data: cart })
         } catch (err) {
             developmentLogger.fatal(err)
 
@@ -165,7 +166,8 @@ class ActionsMongo {
                 first_name: userData.first_name,
                 last_name: userData.last_name,
                 email: userData.email,
-                password: createHash(userData.password)
+                password: createHash(userData.password),
+                cart: null
             }
             const user = await UserManager.createUser(newUser);
             console.log(user)
@@ -196,6 +198,7 @@ class ActionsMongo {
                     last_name: user.last_name,
                     email: user.email,
                     role: user.role,
+                    cart: user.cart
                 };
             } else {
                 developmentLogger.error("Error en la sesión");
@@ -335,6 +338,45 @@ class ActionsMongo {
             res.status(500).json({ error: 'Error al cargar los documentos.' });
         }
     }
+    static async addProductToCart(req, res) {
+        try {
+            const activeUser = await UserManager.getUserById(req.session.user.id);
+            if (!activeUser.cart) {
+                const newCart = await CartManager.createCart({ items: [], owner: activeUser._id });
+
+                activeUser.cart = newCart._id;
+                await activeUser.save();
+
+                await CartManager.addToCart(newCart._id, req.params.productId);
+
+                res.status(201).json({ status: 'success', message: 'Producto agregado al nuevo carrito', cart: newCart });
+            } else {
+                await CartManager.addToCart(activeUser.cart, req.params.productId);
+                res.status(200).json({ status: 'success', message: 'Producto agregado al carrito existente' });
+            }
+        } catch (error) {
+            res.status(500).json({ status: 'error', message: error.message });
+        }
+    }
+    static addToCart = async (cartId, productId) => {
+        try {
+            const cart = await cartModel.findById(cartId);
+
+            const existingItem = cart.items.find(item => item.productId.toString() === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.items.push({ productId, quantity: 1 });
+            }
+
+            await cart.save();
+            developmentLogger.info('Producto agregado al carrito');
+        } catch (error) {
+            developmentLogger.error('Error al agregar producto al carrito:', error);
+        }
+    }
+
+
 }
 
 

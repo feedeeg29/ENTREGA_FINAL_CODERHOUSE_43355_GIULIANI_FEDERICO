@@ -20,17 +20,17 @@ cartMongoRoutes.get('/', async (req, res) => {
     }
 })
 //Traer un Cart por ID
-cartMongoRoutes.get('/:id', async (req, res) => {
+cartMongoRoutes.get('/:id', ActionsMongo.getOneCart)/*async (req, res) => {
     try {
         const cart = await ActionsMongo.getOneCart(req.params.id)
         //developmentLogger.debug(cart)
-        res.json({ status: 200, data: cart })
+        //res.json({ status: 200, data: cart })
     }
     catch (err) {
         res.json({ status: 500, err: err.message })
         developmentLogger.fatal(err)
     }
-})
+})*/
 //Crear un Cart
 cartMongoRoutes.post('/', authRole(["admin", "superadmin", "premiumUser"]), async (req, res) => {
     try {
@@ -43,6 +43,7 @@ cartMongoRoutes.post('/', authRole(["admin", "superadmin", "premiumUser"]), asyn
     }
 })
 //Agregar un producto al Cart
+cartMongoRoutes.post('/:userId/product/:productId', ActionsMongo.addProductToCart);
 //cartMongoRoutes.post('/:id/cart/product/:productId', ActionsMongo.addProductToUserCart);
 
 
@@ -89,5 +90,7 @@ cartMongoRoutes.post('/:cid/purchase', authRole(["admin", "superadmin", "premium
         developmentLogger.fatal(err)
     }
 });
-//export del modulo
+
+
+
 export default cartMongoRoutes

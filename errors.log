@@ -507,3 +507,72 @@
 [36minfo[39m: [36mConnected to MongoDB[39m
 [36minfo[39m: [36mServer running on port 8080[39m
 [36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[33mwarning[39m: [33mUsuario no autenticado[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[33mwarning[39m: [33mUsuario no autenticado[39m
+[36minfo[39m: [36musuario conectado[39m {"email":"fede@fede.com","first_name":"fede","id":"65483ebcd7be5af8d970e9e2","last_name":"fede","role":"premiumUser"}
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36musuario conectado[39m {"email":"fede@fede.com","first_name":"fede","id":"65483ebcd7be5af8d970e9e2","last_name":"fede","role":"premiumUser"}
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36musuario conectado[39m {"email":"fede@fede.com","first_name":"fede","id":"65483ebcd7be5af8d970e9e2","last_name":"fede","role":"premiumUser"}
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36musuario conectado[39m {"cart":null,"email":"fede2@fede.com","first_name":"fede2","id":"654c0216c2a9b48c933d9838","last_name":"fede2","role":"freeUser"}
+[36minfo[39m: [36musuario conectado[39m {"cart":null,"email":"fede2@fede.com","first_name":"fede2","id":"654c0216c2a9b48c933d9838","last_name":"fede2","role":"freeUser"}
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36musuario conectado[39m {"cart":null,"email":"fede2@fede.com","first_name":"fede2","id":"654c0216c2a9b48c933d9838","last_name":"fede2","role":"freeUser"}
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36musuario conectado[39m {"cart":null,"email":"fede2@fede.com","first_name":"fede2","id":"654c0216c2a9b48c933d9838","last_name":"fede2","role":"freeUser"}
+[36minfo[39m: [36mProducto agregado al carrito[39m
+[36minfo[39m: [36musuario conectado[39m {"cart":null,"email":"fede2@fede.com","first_name":"fede2","id":"654c0216c2a9b48c933d9838","last_name":"fede2","role":"freeUser"}
+[36minfo[39m: [36mProducto agregado al carrito[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
+[36minfo[39m: [36musuario conectado[39m {"__v":0,"_id":"652d5f07d843f60752034817","documents":[],"email":"giuliani.federic0@gmail.com","first_name":"Federico","last_name":"Giuliani","password":"$2b$10$yJF6XIArtzjbYCCXt5Oqo.WD8.GMDV6ReCKXfrTUKZflIZuva.6Rq","role":"superadmin"}
+[36minfo[39m: [36mServer running on port 8080[39m
+[36minfo[39m: [36mConnected to MongoDB[39m
